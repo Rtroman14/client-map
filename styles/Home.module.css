@@ -1,0 +1,20 @@
+.container {
+    padding: 0 2rem;
+}
+
+.title {
+    text-align: center;
+}
+
+.mapWrapper {
+    margin: 0 auto;
+    width: 90%;
+    height: 90vh;
+}
+
+.footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
