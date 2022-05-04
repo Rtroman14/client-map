@@ -19,7 +19,7 @@ const citymap = {
     },
 };
 
-export default function Map() {
+export default function Map({ clients }) {
     const ref = useRef();
 
     useEffect(() => {
@@ -29,18 +29,42 @@ export default function Map() {
             mapTypeId: "terrain",
         });
 
-        for (const city in citymap) {
+        for (const client of clients) {
             // Add the circle for this city to the map.
-            const cityCircle = new google.maps.Circle({
+            const circle = new google.maps.Circle({
                 strokeColor: "#FF0000",
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
                 fillColor: "#FF0000",
                 fillOpacity: 0.35,
                 map,
-                center: citymap[city].center,
-                radius: citymap[city].radius * 2000,
+                center: { lat: Number(client.Latitude), lng: Number(client.Longitude) },
+                radius: 50 * 2000,
             });
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: client.Client,
+                position: { lat: Number(client.Latitude), lng: Number(client.Longitude) },
+            });
+
+            google.maps.event.addListener(circle, "mouseover", function (ev) {
+                infoWindow.open(map);
+            });
+
+            google.maps.event.addListener(circle, "mouseout", function (ev) {
+                infoWindow.close();
+            });
+
+            // const marker = new google.maps.Marker({
+            //     map: map,
+            //     position: new google.maps.LatLng({
+            //         lat: Number(client.Latitude),
+            //         lng: Number(client.Longitude),
+            //     }),
+            //     title: "Some location",
+            // });
+
+            // circle.bindTo("center", marker, "position");
         }
     });
 

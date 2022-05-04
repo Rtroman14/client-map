@@ -1,4 +1,3 @@
-require("dotenv").config();
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import "../../styles/globals.css";
 
@@ -15,7 +14,7 @@ const render = (status) => {
 
 function MyApp({ Component, pageProps }) {
     return (
-        <Wrapper apiKey={process.env.GOOGLE_MAPS_API} render={render}>
+        <Wrapper apiKey={process.env.GOOGLE_MAPS_API_KEY} render={render}>
             <Component {...pageProps} />
         </Wrapper>
     );
