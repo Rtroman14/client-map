@@ -29,7 +29,10 @@ export default function Home({ clients }) {
 
 // This gets called on every request
 export async function getServerSideProps() {
-    let domain = process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+    let domain =
+        process.env.NODE_ENV === "production"
+            ? "https://peakleads-client-map.vercel.app"
+            : "http://localhost:3000";
     // Fetch data from external API
     const res = await fetch(`${domain}/api/clients`);
     let clients = await res.json();
