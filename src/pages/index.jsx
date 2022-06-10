@@ -8,8 +8,6 @@ import logo from "../../public/images/Logo-dark.png";
 import Map from "../Components/Map/Map";
 
 export default function Home({ clients }) {
-    console.log("process.env");
-    console.log(process.env.NODE_ENV);
     return (
         <div>
             <div style={{ width: "min-content", margin: "0 auto" }}>
